@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "BRAND", root_path, class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if signed_in? %>
+          <li class="<%= 'active' if current_page?(new_post_path) %>">
+            <%= link_to "New Post", new_post_path %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li>
+            <%= link_to "(#{current_user.name}) Sign out", signout_path, method: "delete" %>
+          </li>
+        <% else %>
+          <li class="<%= 'active' if current_page?(signin_path) %>">
+            <%= link_to 'Sign in', signin_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
